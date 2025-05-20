@@ -26,25 +26,24 @@
 ## Data selection
 Here are the steps for custom mutational database generation:
 1) Fill the *data/request_file.txt* file or create your custom request file in a provided format:
-    >PROJECT_NAMES
-    <ProjectA>
-    <ProjectB>
-    ...
 
-    >PATIENT_IDS
-    <IdA>
-    <IdB>
-    ...
+>PROJECT_NAMES
+ProjectA
+ProjectB
+...
+>PATIENT_IDS
+IdA
+IdB
+...
+>PRIMARY_SITES
+psA   
+psB
+...
+>CHROMOSOMES
+chrA
+chrB
+...
 
-    >PRIMARY_SITES
-    <psA>    
-    <psB>
-    ...
-
-    >CHROMOSOMES
-    <chrA>
-    <chrB>
-    ...
 where under each parameter (starting with ">") you can put a new-line separated list of your requests to be included in the analysis.
 
 2) Run the database creation script:
