@@ -26,7 +26,6 @@
 ## Data selection
 Here are the steps for custom mutational database generation:
 1) Fill the *data/request_file.txt* file or create your custom request file in a provided format:
-
     \>PROJECT_NAMES
     ProjectA
     ProjectB
