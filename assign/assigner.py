@@ -32,7 +32,7 @@ def analyze(args):
             genome_build='GRCh38',
             signature_database=database,
             exome=gen_ex,
-            collapse_to_SBS96=False if context_type!='SBS' else True,
+            collapse_to_SBS96=False,
             verbose=False,
             exclude_signature_subgroups=exclude
         )
@@ -58,13 +58,35 @@ def main():
     parser.add_argument('-i','--input', required=True, help='Path to mutational matrix (SBS/DBS/ID) file or folder of files')
     parser.add_argument('-o','--output', help='Output directory', default='output')
     parser.add_argument('-s','--signature_type', choices=['SBS', 'DBS', 'ID'], default='SBS', help='Type of signatures')
+    parser.add_argument('-c','--context_type', help='Matrix format (e.g. SBS96, SBS288, DBS78, ID83, ID415). Default: SBS96/DBS78/ID83')
     parser.add_argument('-g','--genome_type', choices=['exome', 'genome'], default='genome', help='Exome or genome data')
     parser.add_argument('-d','--signature_database', help='Optional path to .txt file to include only selected signatures', default=None)
     parser.add_argument('-e','--exclude_signature_subgroups', help='Exclude signature subgroups you don\'t want to analyze', default=None)
     
     args = parser.parse_args()
     gen_ex = False if args.genome_type == 'genome' else True
-    
+
+    #checking format
+    default_context = {'SBS': 'SBS96', 'DBS': 'DBS78', 'ID': 'ID83'}
+
+    valid_context = {
+        'SBS': ['SBS96', 'SBS288', 'SBS1536', 'SBS6144'],
+        'DBS': ['DBS78', 'DBS1248'],
+        'ID':  ['ID28', 'ID83', 'ID415', 'ID862']
+    }
+
+    if args.context_type:
+        if args.context_type.isdigit():
+            context_type = f"{args.signature_type}{args.context_type}"
+        else:
+            context_type = args.context_type
+        if context_type not in valid_context[args.signature_type]:
+            raise ValueError(
+                f"The selected format {context_type} is not compatible with the signature type {args.signature_type}. "
+                f"Allowed formats: {valid_context}")
+    else:
+        context_type = default_context[args.signature_type]
+
     # checking file(s) and its (their) format
     input_path = args.input
     if os.path.isfile(input_path):
