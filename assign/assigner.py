@@ -42,12 +42,14 @@ def main():
     Assign COSMIC signatures to mutational data.
 
     Arguments:
-    -i/--input: Path to mutational matrix (SBS/DBS/ID) file or folder of files
-    -o/--output: Output directory
-    -s/--signature_type: Type of signatures (SBS/DBS/ID)
-    -g/--genome_type: Exome or genome data
-    -d/--signature_database: Optional path to .txt file to include only selected signatures
-    -e/--exclude_signature_subgroups: Exclude signature subgroups you don't want to analyze
+      -i, --input INPUT                      Path to mutational matrix (SBS/DBS/ID) file or folder of files
+      -o, --output OUTPUT                    Output directory. Defaullt: output
+      -s, --signature_type                   Type of signatures (SBS,DBS,ID). Default: SBS
+      -c, --context_type                     Matrix format (e.g. SBS96, SBS288, DBS78, ID83, ID415). Default: SBS96/DBS78/ID83
+      -g, --genome_type                      Choose from exome or genome data
+      -d, --signature_database               Optional path to .txt file to include only selected signatures
+      -e, --exclude_signature_subgroups      List of signature subgroups you don't want to analyze
+
     '''
     # create parser
     parser = argparse.ArgumentParser(
@@ -55,12 +57,12 @@ def main():
     
     # Add parser arguments
     parser.add_argument('-i','--input', required=True, help='Path to mutational matrix (SBS/DBS/ID) file or folder of files')
-    parser.add_argument('-o','--output', help='Output directory', default='output')
-    parser.add_argument('-s','--signature_type', choices=['SBS', 'DBS', 'ID'], default='SBS', help='Type of signatures')
+    parser.add_argument('-o','--output', help='Output directory. Default: output', default='output')
+    parser.add_argument('-s','--signature_type', choices=['SBS', 'DBS', 'ID'], default='SBS', help='Type of signatures. Default: SBS')
     parser.add_argument('-c','--context_type', help='Matrix format (e.g. SBS96, SBS288, DBS78, ID83, ID415). Default: SBS96/DBS78/ID83')
-    parser.add_argument('-g','--genome_type', choices=['exome', 'genome'], default='genome', help='Exome or genome data')
+    parser.add_argument('-g','--genome_type', choices=['exome', 'genome'], default='genome', help='Choose from exome or genome data. Default: genome')
     parser.add_argument('-d','--signature_database', help='Optional path to .txt file to include only selected signatures', default=None)
-    parser.add_argument('-e','--exclude_signature_subgroups', help='Exclude signature subgroups you don\'t want to analyze', default=None)
+    parser.add_argument('-e','--exclude_signature_subgroups', help='List of signature subgroups you don\'t want to analyze', default=None)
     
     args = parser.parse_args()
     gen_ex = False if args.genome_type == 'genome' else True
