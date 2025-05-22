@@ -51,7 +51,6 @@ def main():
     '''
     # create parser
     parser = argparse.ArgumentParser(
-        prog='assigner_vol1.py',
         description='Assign COSMIC signatures to mutation data')
     
     # Add parser arguments
