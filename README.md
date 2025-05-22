@@ -51,20 +51,17 @@ where under each parameter (starting with ">") you can put a new-line separated 
 
 where REQUEST_FILEPATH is an optional custom request file filepath, and DATABASE_FILEPATH is an alternative mutations database filepath (default='data/mutations.parquet.gzip')
 
+## Analysis
+
 ### Run the signature assigner script:
     assigner.py [-h] -i INPUT [-o OUTPUT] [-s {SBS,DBS,ID}] [-c CONTEXT_TYPE] [-g {exome,genome}] [-d SIGNATURE_DATABASE] [-e EXCLUDE_SIGNATURE_SUBGROUPS]
 
 where:
-  -h, --help            show this help message and exit
-  -i, --input INPUT     Path to mutational matrix (SBS/DBS/ID) file or folder of files
-  -o, --output OUTPUT   Output directory
-  -s, --signature_type {SBS,DBS,ID}
-                        Type of signatures
-  -c, --context_type CONTEXT_TYPE
-                        Matrix format (e.g. SBS96, SBS288, DBS78, ID83, ID415). Default: SBS96/DBS78/ID83
-  -g, --genome_type {exome,genome}
-                        Exome or genome data
-  -d, --signature_database SIGNATURE_DATABASE
-                        Optional path to .txt file to include only selected signatures
-  -e, --exclude_signature_subgroups EXCLUDE_SIGNATURE_SUBGROUPS
-                        Exclude signature subgroups you don't want to analyze
+
+      -i, --input INPUT                      Path to mutational matrix (SBS/DBS/ID) file or folder of files
+      -o, --output OUTPUT                    Output directory. Defaullt: output
+      -s, --signature_type                   Type of signatures (SBS,DBS,ID). Default: SBS
+      -c, --context_type                     Matrix format (e.g. SBS96, SBS288, DBS78, ID83, ID415). Default: SBS96/DBS78/ID83
+      -g, --genome_type                      Choose from exome or genome data
+      -d, --signature_database               Optional path to .txt file to include only selected signatures
+      -e, --exclude_signature_subgroups      List of signature subgroups you don't want to analyze
