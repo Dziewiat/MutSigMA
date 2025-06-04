@@ -3,3 +3,5 @@ pyarrow
 SigProfilerMatrixGenerator
 SigProfilerAssignment
 tqdm
+seaborn
+matplotlib
