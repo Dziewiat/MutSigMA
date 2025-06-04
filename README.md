@@ -59,9 +59,28 @@ where REQUEST_FILEPATH is an optional custom request file filepath, and DATABASE
 where:
 
       -i, --input INPUT                      Path to mutational matrix (SBS/DBS/ID) file or folder of files
-      -o, --output OUTPUT                    Output directory. Defaullt: output
+      -o, --output OUTPUT                    Output directory. Default: output
       -s, --signature_type                   Type of signatures (SBS,DBS,ID). Default: SBS
       -c, --context_type                     Matrix format (e.g. SBS96, SBS288, DBS78, ID83, ID415). Default: SBS96/DBS78/ID83
       -g, --genome_type                      Choose from exome or genome data
       -d, --signature_database               Optional path to .txt file to include only selected signatures
       -e, --exclude_signature_subgroups      List of signature subgroups you don't want to analyze
+
+## Visualization
+
+### Run the signature visualizer script:
+    visualize.py [-h] -i INPUT [-o OUTPUT] [-b] [-n] [-r] [-p] [-d SAMPLE_ID] [-f N] [-a] [-t] [-s]
+
+where:
+
+      -i, --input INPUT                      Path to Assignment_Solution folder (required)
+      -o, --output OUTPUT                    Output directory (default: plots)
+      -b, --boxplot                          Generate boxplot of signature activities
+      -n, --no_outliers                      Hide outliers in boxplot
+      -r, --barplot                          Generate barplot of active signatures count
+      -p, --piechart                         Generate pie chart of signature etiologies
+      -d, --id SAMPLE_ID                     Generate pie chart for specific sample ID 
+      -f, --first_n N                        Generate pie charts for first N samples (default: 0)
+      -a, --all                              Generate all available visualizations
+      -t, --report                           Generate summary report
+      -s, --show                             Display plots only (don't save)
