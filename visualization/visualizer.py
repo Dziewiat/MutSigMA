@@ -6,6 +6,7 @@ import sys
 import os
 from pathlib import Path
 
+
 SIGNATURE_ETIOLOGY = {
     # Aging
     'SBS1': 'Clock-like', 'SBS5': 'Clock-like',
@@ -250,6 +251,44 @@ def create_etiology_piechart(data, output_dir, dataset_name, sample_id=None, sho
         print(f"Etiology pie chart saved: {output_path}")
     plt.close()
 
+def cluster_signatures(data, output_dir=None, dataset_name=None, method='complete', show_only=False):
+    """Cluster signatures hierarchically and visualize as a heatmap with dendrograms."""
+    
+    # Filter out signatures with all zeros
+    active_data = data.loc[:, (data != 0).any(axis=0)]
+    if active_data.shape[1] == 0:
+        print("No active signatures found for clustering heatmap.")
+        return
+
+    # Create clustermap (z-score normalization by signature for better visualization)
+    cg = sns.clustermap(
+        active_data,
+        metric='cosine',
+        method=method,
+        cmap='viridis',
+        figsize=(max(12, active_data.shape[1] * 0.5), 10),
+        z_score=1,  # normalize by signature (column)
+        linewidths=0.1,
+        cbar_kws={'label': 'Z-score Activity'},
+        cbar_pos=(1.02, 0.2, 0.01, 0.6)
+    )
+
+    cg.ax_heatmap.set_xlabel('Mutational Signatures', fontsize=14)
+    cg.ax_heatmap.set_ylabel('Samples', fontsize=14)
+    cg.ax_heatmap.set_title('Hierarchical Clustering of Mutational Signatures', fontsize=16, fontweight='bold')
+
+    if show_only:
+        plt.subplots_adjust(right=0.90)
+        plt.show()
+    else:
+        if output_dir is None or dataset_name is None:
+            print("Output directory and dataset name required to save clustering heatmap.")
+            return
+        output_path = os.path.join(output_dir, f"{dataset_name}_signature_clustermap.png")
+        plt.savefig(output_path, dpi=300, bbox_inches='tight')
+        print(f"Signature clustering heatmap saved: {output_path}")
+    plt.close()
+
 def generate_summary_report(data, output_dir, dataset_name):
     """ Generate a summary report of the analysis """
     report_path = os.path.join(output_dir, f"{dataset_name}_summary_report.txt")
@@ -324,6 +363,7 @@ def main():
       -a, --all                              Generate all visualizations
       -t, --report                           Generate summary report
       -s, --show                             Display plots only (no saving)
+      -c, --cluster_signatures               Generate clustering heatmap of signatures
     '''
 
     parser = argparse.ArgumentParser(description=
@@ -340,6 +380,7 @@ def main():
     parser.add_argument('-a', '--all', action='store_true', help='Generate all visualizations')
     parser.add_argument('-t', '--report', action='store_true', help='Generate summary report')
     parser.add_argument('-s', '--show', action='store_true', help='Display plots only (no saving)')
+    parser.add_argument('-c', '--cluster_signatures', action='store_true', help='Generate clustering heatmap of signatures')
 
     args = parser.parse_args()
 
@@ -389,7 +430,10 @@ def main():
         else:
             # If --piechart: generate chart for all patients (default)
             create_etiology_piechart(data, args.output, dataset_name, sample_id=None, show_only=args.show)
-
+    if args.all or args.cluster_signatures:
+        print("\nGenerating cluster heatmap...")
+        cluster_signatures(data, args.output, dataset_name, show_only=args.show)
+        
     if (args.all or args.report) and not args.show:
         print("\nGenerating summary report...")
         generate_summary_report(data, args.output, dataset_name)
