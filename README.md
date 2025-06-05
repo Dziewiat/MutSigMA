@@ -98,3 +98,4 @@ where:
       -a, --all                              Generate all available visualizations
       -t, --report                           Generate summary report
       -s, --show                             Display plots only (don't save)
+      -c, --cluster_signatures               Generate clustering heatmap of signatures
