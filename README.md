@@ -1,4 +1,4 @@
-MutSigMA.png
+![Logo projektu](MutSigMA.png)
 
 **Mutational Signatures Multi-Analysis (MutSigMA)** - mutational signatures tool-kit every bioinformatician needs
 
