@@ -2,7 +2,9 @@
   <img src="MutSigMA.png" alt="Logo projektu">
 </p>
 
-# Mutational Signatures Multi-Analysis (MutSigMA) - mutational signatures tool-kit every bioinformatician needs
+<h1 align="center">Mutational Signatures Multi-Analysis (<em>MutSigMA</em>)</h1>
+
+<p align="center"><strong> Mutational signatures toolkit every bioinformatician needs.</strong></p>
 
 ### Functionalities:
 1) Downloading and preprocessing mutational data from TCGA database
