@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="MutSigMA.png" alt="Logo projektu" width="200">
+  <img src="MutSigMA.png" alt="Logo projektu">
 </p>
 
 **Mutational Signatures Multi-Analysis (MutSigMA)** - mutational signatures tool-kit every bioinformatician needs
