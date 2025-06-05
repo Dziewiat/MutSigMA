@@ -83,7 +83,7 @@ where:
 ## Visualization
 
 ### Run the signature visualizer script:
-    visualize.py [-h] -i INPUT [-o OUTPUT] [-b] [-n] [-r] [-p] [-d SAMPLE_ID] [-f N] [-a] [-t] [-s]
+    visualize.py [-h] -i INPUT [-o OUTPUT] [-b] [-n] [-r] [-p] [-d SAMPLE_ID] [-f N] [-a] [-t] [-s] [-c]
 
 where:
 
