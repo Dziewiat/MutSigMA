@@ -5,6 +5,8 @@ import argparse
 import sys
 import os
 from pathlib import Path
+import warnings
+warnings.filterwarnings("ignore")
 
 
 SIGNATURE_ETIOLOGY = {
@@ -259,6 +261,9 @@ def cluster_signatures(data, output_dir=None, dataset_name=None, method='complet
     if active_data.shape[1] == 0:
         print("No active signatures found for clustering heatmap.")
         return
+    
+    # Remove .txt extension if present
+    clean_name = dataset_name.replace('.txt', '') if dataset_name else 'heatmap'
 
     # Create clustermap (z-score normalization by signature for better visualization)
     cg = sns.clustermap(
@@ -284,7 +289,7 @@ def cluster_signatures(data, output_dir=None, dataset_name=None, method='complet
         if output_dir is None or dataset_name is None:
             print("Output directory and dataset name required to save clustering heatmap.")
             return
-        output_path = os.path.join(output_dir, f"{dataset_name}_signature_clustermap.png")
+        output_path = os.path.join(output_dir, f"{clean_name}_signature_clustermap.png")
         plt.savefig(output_path, dpi=300, bbox_inches='tight')
         print(f"Signature clustering heatmap saved: {output_path}")
     plt.close()
@@ -438,7 +443,7 @@ def main():
         print("\nGenerating summary report...")
         generate_summary_report(data, args.output, dataset_name)
 
-    if not any([args.boxplot, args.barplot, args.piechart, args.all, args.report]):
+    if not any([args.boxplot, args.barplot, args.piechart, args.all, args.report, args.cluster_signatures]):
         print("No visualization option selected. Use --help for available options.")
         print("Quick start: python visualizer.py -i output_folder/output_file --all")
 
