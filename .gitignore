@@ -4,3 +4,5 @@ data/VCF
 logs
 .DS_Store
 output
+plots
+data/mutational_matrices

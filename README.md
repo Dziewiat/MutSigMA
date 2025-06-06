@@ -103,3 +103,30 @@ where:
       -t, --report                           Generate summary report
       -s, --show                             Display plots only (don't save)
       -c, --cluster_signatures               Generate clustering heatmap of signatures
+
+## Whole mutational signature analysis pipeline
+If you have all the preferences ready you can perform the whole analysis by using the MutSigMA.py script.
+
+### Run MutSigMA pipeline script:
+    MutSigMA.py [-h] [-r REQUEST_FILEPATH] [-m MUTATIONS_DATABASE_FILEPATH] [-k {SBS96,SBS288,SBS1536,DBS78,ID83}] [-g {exome,genome}] [-d SIGNATURE_DATABASE] [-e EXCLUDE_SIGNATURE_SUBGROUPS] [-o OUTPUT] [-x] [-n] [-b] [-p] [-u UID] [-f FIRST_N] [-a] [-t] [-z] [-c]
+
+where:
+
+      -r, --request-filepath                 Path to the request file of specified format
+      -m, --mutations-database-filepath      Path to the mutations database
+      -k, --signature_context                Specific signature type to extract (SBS96,SBS288,SBS1536,DBS78,ID83)
+      -g, --genome_type                      Exome or genome data (exome,genome)
+      -d, --signature_database               Optional path to .txt file to include only selected signatures
+      -e, --exclude_signature_subgroups      Exclude signature subgroups you don't want to analyze
+      -o, --output                           Output directory (default: plots)
+      -x, --boxplot                          Generate boxplot of signature activities
+      -n, --no_outliers                      Hide outliers in boxplot
+      -b, --barplot                          Generate barplot of active signatures count
+      -p, --piechart                         Generate pie chart of signature etiologies
+      -u, --uid                              Specific sample ID for individual pie chart
+      -f, --first_n                          Generate pie charts for first N patients (default: 0)
+      -a, --all                              Generate all visualizations
+      -t, --report                           Generate summary report
+      -z, --show                             Display plots only (no saving)
+      -c, --cluster_signatures               Generate clustering heatmap of signatures
+
