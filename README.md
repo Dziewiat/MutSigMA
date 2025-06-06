@@ -2,7 +2,7 @@
   <img src="MutSigMA.png" alt="Logo projektu">
 </p>
 
-<h1 align="center"><strong>Mutational Signatures Multi-Analysis (<em>MutSigMA</em>)<strong></h1>
+<h1 align="center"><strong>Mutational Signatures Multi-Analysis (<em>MutSigMA</em>)</strong></h1>
 
 <h2 align="center"><strong>Mutational signatures toolkit every bioinformatician needs.</strong></h2>
 
