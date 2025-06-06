@@ -1,5 +1,7 @@
 pandas
 pyarrow
 SigProfilerMatrixGenerator
-tqdm
 SigProfilerAssignment
+tqdm
+seaborn
+matplotlib

@@ -32,7 +32,7 @@ def analyze(args):
             genome_build='GRCh38',
             signature_database=database,
             exome=gen_ex,
-            collapse_to_SBS96=False if context_type!='SBS' else True,
+            collapse_to_SBS96=False,
             verbose=False,
             exclude_signature_subgroups=exclude
         )
@@ -64,7 +64,7 @@ def main():
     
     args = parser.parse_args()
     gen_ex = False if args.genome_type == 'genome' else True
-    
+    print( os.path.isdir(args.input) )
     # checking file(s) and its (their) format
     input_path = args.input
     if os.path.isfile(input_path):
