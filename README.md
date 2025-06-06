@@ -59,7 +59,7 @@ where REQUEST_FILEPATH is an optional custom request file filepath, and DATABASE
 
 ### Run the signature assigner script:
 
-!!!! The current implementation of the signatures assignment is limited to assigning COSMIC mutational signatures for a restricted set of mutation types and contexts, specifically:
+The current implementation of the signatures assignment is limited to assigning COSMIC mutational signatures for a restricted set of mutation types and contexts, specifically:
 
 - SBS96
 
